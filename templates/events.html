@@ -33,11 +33,11 @@
 {% block content %} 
 	<div>
 		<h1>Events Page</h1>
-    {% for event in events %}
+    {% for d in data %}
       <div>
-        <a href="/events/{{event.id}}">
-          <img src="{{event.image}}">
-          <p>{{event.name}}</p>
+        <a href="/events/{{d.id}}">
+          <img src="{{d.image}}">
+          <p>{{d.name}}</p>
         </a>
       </div>
     {% endfor %}
