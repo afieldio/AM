@@ -10,32 +10,31 @@ manager = Manager(app)
 bootstrap = Bootstrap(app)
 
 Events = [
-		{
+	{
 		'id': '1',
 		'image': ' http://lorempixel.com/400/200/sports/',
 		'name': 'Event 1',
 		'date': '1429709298',
 		'description': 'This is a super cool app',
 		'location': 'xxx',
-		},
-		{
+	},
+	{
 		'id': '2',
 		'image': ' http://lorempixel.com/400/200/technics/',
 		'name': 'Event 2',
 		'date': '1429709298',
 		'description': 'This is a super cool app again',
 		'location': 'xxx',
-		},
-		{
+	},
+	{
 		'id': '3',
 		'image': ' http://lorempixel.com/400/200/fashion/',
 		'name': 'Event 3',
 		'date': '1429709298',
 		'description': 'This is a super cool app again again',
 		'location': 'xxx',
-		}
-
-	]
+	},
+]
 
 
 @app.route('/')
