@@ -2,6 +2,12 @@
 {% extends "bootstrap/base.html" %}
 
 
+{% set navigation_bar = [
+    ('/', 'home', 'Home'),
+    ('/about', 'about', 'About'),
+    ('/events', 'events', 'Events')
+] -%}
+
 {% block title %} AM {% endblock %}
 
 
@@ -28,9 +34,15 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-        	<li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+        	{% for href, id, caption in navigation_bar %}
+            <li {% if id == active_page %} class="active" {% endif %}><a href="{{ href|e }}">{{caption|e}}</a></li>
+          {% endfor %}
+
+
+
+          <!-- <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
           <li><a href="/about">About</a></li>
-          <li><a href="/events">Events</a></li>
+          <li><a href="/events">Events</a></li> -->
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
