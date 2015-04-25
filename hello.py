@@ -3,11 +3,19 @@ from flask import abort
 from flask.ext.script import Manager
 from flask import render_template
 from flask.ext.bootstrap import Bootstrap
+from flask.ext.sqlalchemy import SQLAlchemy
 import pdb
+import os
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+
 manager = Manager(app)
 bootstrap = Bootstrap(app)
+db =SQLAlchemy(app)
 
 Events = [
 	{
@@ -55,6 +63,25 @@ def event_id(id):
 	index = int(id) - 1
 	event = Events[index]
 	return render_template("events_detail.html", event=event)
+
+class Events(db.Model):
+	__tablename__ = 'events'
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(64), unique=True)
+	description = db.Column(db.Text)
+	date = db.Column(db.DateTime)
+
+	def __repr__(self):
+		return '<Event %r >' % self.name
+
+class User(db.Model):
+	__tablename__ = 'users'
+	id = db.Column(db.Integer, primary_key=True)
+	username  = db.Column(db.String(64), unique=True, index=True)
+
+	def __repr__(self):
+		return '<User %r >' % self.username
+		
 
 
 if __name__ == '__main__':
