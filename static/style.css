@@ -1,3 +1,239 @@
+h1{
+	padding:20px 0px 0px 20px;
+	font-size: 5em;
+	
+}
+
+h4{
+	font-size: 3em;
+	font-weight: lighter;
+}
+
+footer{
+	height: 300px;
+	color: #f8f8f8;
+}
 .active{
-	border-bottom: 1px red solid;
+	border-bottom: 1px red gray;
+	opacity: 50%;
+	background-color: blue;
+}
+
+.header{
+	text-align: center;
+
+}
+
+.header img{
+	width: 100%;
+	margin: 0px auto;
+}
+
+.quote{
+	font-weight: lighter;
+	font-size: 2em;
+	font-style: italic;
+}
+
+.quote_name{
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.quote_cont{
+	padding: 40px 0px;
+}
+.row{
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: white;
+}
+
+.row_title{
+	text-align: center;
+	padding: 40px 0px;
+	font-weight: lighter;
+	font-size: 3em;
+	font-style: italic;
+}
+
+.about1{
+	width: 40%;
+	height: 40%;
+	margin: 0 auto;
+	padding: 40px 0px;
+}
+
+.about1{
+	width: 10%;
+	height: 10%;
+	margin: 0 auto;
+	padding: 40px 0px;
+}
+
+.wrapper {
+    width: 100%;
+    background-color: lightcyan;
+   
+    
+
+}
+
+.wrapper img {
+	position: absolute;
+    background-image: url(pic_1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width:50%;
+    height: 50%;
+
+}
+
+
+#chart_wt{
+	
+}
+.at, .wt{
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#chart_wt table{
+
+}
+
+.main_image{
+	width: 100%;
+	height: 100px;
+}
+
+.overview{
+	background-color: #f8f8f8;
+	/*padding: 20px 0px;*/
+	border: 1px solid #f8f8f8;
+	/*border-radius: 50%;
+	width:20%;*/
+	font-weight: lighter;
+	font-size: 2em;
+	padding: 40px 0px;
+
+}
+
+.row{
+	background-color: white;
+}
+
+.wtf{
+	font-size: 1.2em;
+	padding: 20px 40px;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.wtf img{
+	height: 100%;
+	width: 100%;
+
+}
+.wtf p{
+	padding: 5px;
+	font-size: 1.5em;
+}
+
+.wiser{
+	padding: 20px 40px;
+	
+}
+
+.wiser p {
+	
+	padding: 5px;
+	font-size: 1.5em;
+}
+
+.overview h2{
+	color: gray;
+	text-align: center;
+	font-size: 2em;
+	font-weight: lighter;
+}
+
+.overview h3{
+	text-align: center;
+	color: blue;
+
+}
+
+.status{
+	background-color: #f8f8f8;
+	padding: 20px 20px;
+	text-align: center;
+}
+
+.status h4{
+	color: gray;
+	text-align: center;
+	padding: 20px 0px;
+}
+
+.status h5{
+	color: gray;
+	text-align: center;
+}
+
+
+
+
+
+
+.onoffswitch {
+	margin: 0 auto;
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #34A7C1; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    border: 2px solid #999999; border-radius: 20px;
+    position: absolute; top: 0; bottom: 0; right: 56px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
 }

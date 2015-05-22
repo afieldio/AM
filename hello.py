@@ -6,48 +6,26 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
 import pdb
 import os
+import pprint
+import sensors
+import gviz_api
+import json
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 manager = Manager(app)
 bootstrap = Bootstrap(app)
 db =SQLAlchemy(app)
 
-Events = [
-	{
-		'id': '1',
-		'image': ' http://lorempixel.com/400/200/sports/',
-		'name': 'Event 1',
-		'date': '1429709298',
-		'description': 'This is a super cool app',
-		'location': 'xxx',
-	},
-	{
-		'id': '2',
-		'image': ' http://lorempixel.com/400/200/technics/',
-		'name': 'Event 2',
-		'date': '1429709298',
-		'description': 'This is a super cool app again',
-		'location': 'xxx',
-	},
-	{
-		'id': '3',
-		'image': ' http://lorempixel.com/400/200/fashion/',
-		'name': 'Event 3',
-		'date': '1429709298',
-		'description': 'This is a super cool app again again',
-		'location': 'xxx',
-	},
-]
-
-
 @app.route('/')
 def index():
-	return render_template("index.html")
+	sump_temp = sensors.get_temp()
+
+	return render_template("index.html", sump_temp=sump_temp)
 
 @app.route('/about')
 def about():
@@ -55,33 +33,39 @@ def about():
 
 @app.route('/events')
 def events():
-	data=Events
+	data=events
 	return render_template("events.html", data=data)
 
 @app.route('/events/<id>')
-def event_id(id):
-	index = int(id) - 1
-	event = Events[index]
+def event_detail(id):
+	
 	return render_template("events_detail.html", event=event)
 
-class Events(db.Model):
-	__tablename__ = 'events'
+
+def get_temp():
+	sump_temp = 10.0
+	return sump_temp
+
+
+class Sensors(db.Model):
+	__tablename__ = 'sensors'
 	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(64), unique=True)
-	description = db.Column(db.Text)
+	sump_temp = db.Column(db.Float(2))
+	# fish_temp = db.Column(db.Float(2))
+	# air_temp = db.Column(db.Float(2))
+	# flow_1 = db.Column(db.Float(2))
+	# flow_2 = db.Column(db.Float(2))
+	# water_htr = db.Column(db.Boolean)
+	# air_htr = db.Column(db.Boolean)
+	# water_pump = db.Column(db.Boolean)
+	# air_pump = db.Column(db.Boolean)
+	
 	date = db.Column(db.DateTime)
 
 	def __repr__(self):
-		return '<Event %r >' % self.name
+		return '<Senor %r >' % self.name
 
-class User(db.Model):
-	__tablename__ = 'users'
-	id = db.Column(db.Integer, primary_key=True)
-	username  = db.Column(db.String(64), unique=True, index=True)
 
-	def __repr__(self):
-		return '<User %r >' % self.username
-		
 
 
 if __name__ == '__main__':

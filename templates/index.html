@@ -6,6 +6,66 @@
 
 {% block page_content %} 
 	<div>
-		<h1>Home Page</h1>
+		<div class="jumbatron header">
+			<h1>Adam's Aquaponic Automaton</h1>
+			<!-- <img class="centered img-responsive"src="http://loremflickr.com/1280/360/gardening"> -->	
+		</div>
+		
+		
+		<div class="row">
+			<p class="row_title">Vitals</p>
+			<div class="col-sm-6 overview">
+				<h2 >Water Temperature</h2>
+				<div>
+					<div class="wt" id="chart_wt"></div>	
+				</div>
+				
+			</div>
+			<div class="col-sm-6 overview">
+				<h2 class="temp">Air Temperature</h2>
+				<div>
+					<div class="at" id="chart_at"></div>	
+				</div>
+				
+				
+			</div>
+		</div>
+		<div class="row">
+			<p class="row_title">Status</p>
+			<div class="col-sm-4 status">
+				<h4>Water Pump</h4>
+				
+				<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+			</div>
+			<div class="col-sm-4 status">
+				<h4>Air Pump</h4>
+				
+				<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+			</div>
+			<div class="col-sm-4 status">
+				<h4>Lights</h4>
+				
+				<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+			</div>
+		</div>
+
 	</div>
 {% endblock %}

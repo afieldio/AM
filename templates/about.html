@@ -5,6 +5,49 @@
 
 {% block content %} 
 	<div>
-		<h1>About Page</h1>
+		<div class="jumbatron header">
+			<h1>All about AAA</h1>
+			<!-- <img class="centered img-responsive"src="http://loremflickr.com/1280/360/gardening"> -->
+			<div class="quote_cont">
+				<p class="quote">"The begninning is the most important part of the work."</p>
+				<p class="quote_name">Plato</p>		
+			</div>
+			
+		</div>
+		
+		
+
+		<div class="row wtf">
+			<div class="col-lg-12 centered">
+				<h2>Wtf?</h2>
+			  	<p>Adam's Aquaponic Automaton started its life when I began looking at using using the Raspberry Pi and Arduino to monitor and control a system. The system I decided to look at is called <span class="emphasis">Aquaponics</span>.</p>
+
+			  	
+			</div>
+			
+		  	<div class="row">
+			<div class="col-lg-12 centered ">
+				<img class="about1 center-block" src="{{ url_for('static', filename='feedback.png') }}">
+			</div>
+		</div>
+
+		</div>
+
+		<div class="row wtf">
+		
+		
+
+		<div class="col-lg-12 centered">
+			<h2>Still none the wiser?</h2>
+		  	<p>Aquaponics is a Closed Looped system that utilises naturally occuring processes to grow both plants and fish. By feeding the fish they produce waste (Ammonia). Bacteria break this down into Nitrates that goes on to provide nutrients for the plants. For those of you who have done some GCSE biology you might remember the nitrogen cycle.</p>
+
+		</div>
+
+		<div class="col-lg-12 centered">
+		  	<img class="about2" src="{{ url_for('static', filename='nitrogen.jpg') }}">
+		 </div>
+
+		
+		
 	</div>
 {% endblock %}
