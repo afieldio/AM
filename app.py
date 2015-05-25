@@ -10,16 +10,18 @@ import pprint
 import sensors
 import gviz_api
 import json
+from database import db_session
+from models import Sensors
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
-app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
+# app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 manager = Manager(app)
 bootstrap = Bootstrap(app)
-db =SQLAlchemy(app)
+# db =SQLAlchemy(app)
 
 @app.route('/')
 def index():
@@ -33,7 +35,9 @@ def about():
 
 @app.route('/events')
 def events():
-	data=events
+	data = Sensors.query.all()
+	print data
+
 	return render_template("events.html", data=data)
 
 @app.route('/events/<id>')
@@ -47,24 +51,10 @@ def get_temp():
 	return sump_temp
 
 
-class Sensors(db.Model):
-	__tablename__ = 'sensors'
-	id = db.Column(db.Integer, primary_key=True)
-	sump_temp = db.Column(db.Float(2))
-	# fish_temp = db.Column(db.Float(2))
-	# air_temp = db.Column(db.Float(2))
-	# flow_1 = db.Column(db.Float(2))
-	# flow_2 = db.Column(db.Float(2))
-	# water_htr = db.Column(db.Boolean)
-	# air_htr = db.Column(db.Boolean)
-	# water_pump = db.Column(db.Boolean)
-	# air_pump = db.Column(db.Boolean)
-	
-	date = db.Column(db.DateTime)
 
-	def __repr__(self):
-		return '<Senor %r >' % self.name
-
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
 
 
 
