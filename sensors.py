@@ -1,5 +1,6 @@
 from flask import Flask
+from models import Sensors
 
-def get_temp():
-	sump_temp = 10.0
-	return sump_temp
+def get_sump_temp():
+	st = Sensors.query.order_by(Sensors.id.desc()).first()
+	return st

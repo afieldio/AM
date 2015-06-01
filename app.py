@@ -25,9 +25,10 @@ bootstrap = Bootstrap(app)
 
 @app.route('/')
 def index():
-	sump_temp = sensors.get_temp()
-
-	return render_template("index.html", sump_temp=sump_temp)
+	st = sensors.get_sump_temp()
+	print st.sump_temp
+	
+	return render_template("index.html", st=st)
 
 @app.route('/about')
 def about():
@@ -35,8 +36,10 @@ def about():
 
 @app.route('/events')
 def events():
-	data = Sensors.query.all()
-	print data
+	# data = Sensors.query.all()
+	d = sensors.__table__.columns
+	print d
+
 
 	return render_template("events.html", data=data)
 

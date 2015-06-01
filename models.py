@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime
+from sqlalchemy import Column, Integer, String, Float, DateTime, func
 from database import Base
+import datetime
 
 class Sensors(Base):
 	__tablename__ = 'sensors'
@@ -14,7 +15,8 @@ class Sensors(Base):
 	# water_pump = db.Column(db.Boolean)
 	# air_pump = db.Column(db.Boolean)
 	
-	date = Column(DateTime)
+	date = Column(DateTime, default=func.now())
+
 
 	def __init__(self, sump_temp=None, date=None):
 		self.sump_temp = sump_temp
@@ -22,5 +24,9 @@ class Sensors(Base):
 
 
 	def __repr__(self):
-		return '<Sensor %r >' % self.sump_temp
-		return '<Time %r >' % self.date
+		# return "{'Temp':self.sump_temp, 'Time': self.date}"
+		# # return '<Time %r >' % self.date
+
+
+ 		return "<Sensors(sump_temp='%s', date='%s')>" % (
+                                self.sump_temp, self.date)
