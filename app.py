@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask import abort
 from flask.ext.script import Manager
 from flask import render_template
@@ -12,21 +12,35 @@ import gviz_api
 import json
 from database import db_session
 from models import Sensors
+from flask.ext.migrate import Migrate, MigrateCommand
+from forms import SwitchState
 
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
+app.config.from_object('config')
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.db')
 # app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 manager = Manager(app)
 bootstrap = Bootstrap(app)
-# db =SQLAlchemy(app)
+db =SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
+
+# Main pages
 
 @app.route('/')
 def index():
 	st = sensors.get_sump_temp()
-	print st.sump_temp
+	# print st.sump_temp
+	#st = '10'
 	
 	return render_template("index.html", st=st)
 
@@ -40,18 +54,23 @@ def events():
 	d = sensors.__table__.columns
 	print d
 
-
 	return render_template("events.html", data=data)
+
+@app.route('/lightState', methods=["GET", "POST"])
+def _lightState():
+	form = SwitchState(request.form)
+
+    # if request.form['onoffswitch=on']:
+    #     print "Light is On"
+    # else:
+    #     print "Light is Off"
+	print form.water.value
+	return ""
 
 @app.route('/events/<id>')
 def event_detail(id):
 	
 	return render_template("events_detail.html", event=event)
-
-
-def get_temp():
-	sump_temp = 10.0
-	return sump_temp
 
 
 

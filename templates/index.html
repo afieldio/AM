@@ -7,52 +7,16 @@
 {% block head %}
 	{{super()}}
 	<script type="text/javascript">
-		google.load("visualization", "1", {packages:["gauge"]});
-		google.setOnLoadCallback(drawWTChart);
-		function drawWTChart() {
-
-		  var data = google.visualization.arrayToDataTable([
-		    ['Label', 'Value'],
-		    ['', {{st.sump_temp}}],
-		  ]);
-
-		  var options = {
-		    width: 300, height: 300,
-		    redFrom: 90, redTo: 100,
-		    yellowFrom:75, yellowTo: 90,
-		    minorTicks: 5
-		  };
-
-		  var chart = new google.visualization.Gauge(document.getElementById('chart_wt'));
-
-		  chart.draw(data, options);
-
-		}
-
-		google.setOnLoadCallback(drawATChart);
-		function drawATChart() {
-
-		  var data = google.visualization.arrayToDataTable([
-		    ['Label', 'Value'],
-		    ['', {{st.sump_temp}}],
-		  ]);
-
-		  var options = {
-		    width: 300, height: 300,
-		    redFrom: 90, redTo: 100,
-		    yellowFrom:75, yellowTo: 90,
-		    minorTicks: 5
-		  };
-
-		  var chart = new google.visualization.Gauge(document.getElementById('chart_at'));
-
-		  chart.draw(data, options);
-
-		}
-
-		console.log("width");
-
-
+		
+		$(document).ready(function() {
+			console.log('Run');
+			$("#myonoffswitch1").change(function(){
+				$.post("lightState", $( "#waterForm" ).serialize());
+					console.log($( "#waterForm" ).serialize());
+			});
+		});
+		
+		
 	</script>
 {% endblock %}
 
@@ -98,7 +62,7 @@
 		<div class="row">
 			<div class="col-sm-4 status">
 				<h4>Water Pump</h4>
-				
+				<form name="water" id="waterForm">
 				<div class="onoffswitch">
 				    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
 				    <label class="onoffswitch-label" for="myonoffswitch1">
@@ -106,18 +70,25 @@
 				        <span class="onoffswitch-switch"></span>
     				</label>
 				</div>
+				</form>
 			</div>
+			
+
 			<div class="col-sm-4 status">
 				<h4>Air Pump</h4>
+				<form name="air" id="airForm">
+					<div class="onoffswitch">
+				    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch2" checked>
+				    <label class="onoffswitch-label" for="myonoffswitch2">
+				        <span class="onoffswitch-inner"></span>
+				        <span class="onoffswitch-switch"></span>
+				    </label>
+				</div>
 				
-				<div class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch2" checked>
-    <label class="onoffswitch-label" for="myonoffswitch2">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-</div>
+				
 			</div>
+			
+
 			<div class="col-sm-4 status">
 				<h4>Lights</h4>
 				

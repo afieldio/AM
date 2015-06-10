@@ -6,7 +6,7 @@ from flask.ext.jsontools import JsonSerializableBase
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-engine = create_engine('sqlite:///' + os.path.join(basedir, 'database.db'), convert_unicode=True)
+engine = create_engine('sqlite:///' + os.path.join(basedir, 'app.db'), convert_unicode=True)
 
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
