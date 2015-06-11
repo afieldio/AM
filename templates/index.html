@@ -9,10 +9,17 @@
 	<script type="text/javascript">
 		
 		$(document).ready(function() {
-			console.log('Run');
-			$("#myonoffswitch1").change(function(){
-				$.post("lightState", $( "#waterForm" ).serialize());
-					console.log($( "#waterForm" ).serialize());
+			$("#waterSwitch").change(function(){
+				$.post("switchState", $( "#switchForm" ).serializeArray());
+					console.log($( "#switchForm" ).serializeArray());
+			});
+			$("#airSwitch").change(function(){
+				$.post("switchState", $( "#switchForm" ).serializeArray());
+					console.log($( "#switchForm" ).serializeArray());
+			});
+			$("#lightSwitch").change(function(){
+				$.post("switchState", $( "#switchForm" ).serializeArray());
+					console.log($( "#switchForm" ).serializeArray());
 			});
 		});
 		
@@ -60,26 +67,26 @@
 			<p class="row_title">Status</p>
 		</div>
 		<div class="row">
+			
+			<form name="switchState" id="switchForm">
 			<div class="col-sm-4 status">
 				<h4>Water Pump</h4>
-				<form name="water" id="waterForm">
+				
 				<div class="onoffswitch">
-				    <input type="checkbox" name="water" class="onoffswitch-checkbox" id="myonoffswitch1" checked>
-				    <label class="onoffswitch-label" for="myonoffswitch1">
+				    <input type="checkbox" name="water" class="onoffswitch-checkbox" id="waterSwitch">
+				    <label class="onoffswitch-label" for="waterSwitch">
 				        <span class="onoffswitch-inner"></span>
 				        <span class="onoffswitch-switch"></span>
     				</label>
 				</div>
-				</form>
 			</div>
 			
 
 			<div class="col-sm-4 status">
 				<h4>Air Pump</h4>
-				<form name="air" id="airForm">
 					<div class="onoffswitch">
-				    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch2" checked>
-				    <label class="onoffswitch-label" for="myonoffswitch2">
+				    <input type="checkbox" name="air" class="onoffswitch-checkbox" id="airSwitch">
+				    <label class="onoffswitch-label" for="airSwitch">
 				        <span class="onoffswitch-inner"></span>
 				        <span class="onoffswitch-switch"></span>
 				    </label>
@@ -93,13 +100,14 @@
 				<h4>Lights</h4>
 				
 				<div class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
-    <label class="onoffswitch-label" for="myonoffswitch3">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-</div>
+				    <input type="checkbox" name="light" class="onoffswitch-checkbox" id="lightSwitch">
+				    <label class="onoffswitch-label" for="lightSwitch">
+				        <span class="onoffswitch-inner"></span>
+				        <span class="onoffswitch-switch"></span>
+				    </label>
+				</div>
 			</div>
+			</form>
 		</div>
 
 	</div>

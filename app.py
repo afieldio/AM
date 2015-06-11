@@ -56,14 +56,15 @@ def events():
 
 	return render_template("events.html", data=data)
 
-@app.route('/lightState', methods=["GET", "POST"])
+@app.route('/switchState', methods=["GET", "POST"])
 def _lightState():
 	
 	form = SwitchState(request.form)
-	if not form.water.data:
-		print "Light Off"
-	else:
-		print "Light On"
+	print form.data
+	# if not form.water.data:
+	# 	print "Light Off"
+	# else:
+	# 	print "Light On"
 
 	# import ipdb; ipdb.set_trace()
 	return ""
