@@ -4,6 +4,7 @@ from flask.ext.script import Manager
 from flask import render_template
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
 import pdb
 import os
 import pprint
@@ -39,10 +40,12 @@ manager.add_command('db', MigrateCommand)
 @app.route('/')
 def index():
 	st = sensors.get_sump_temp()
-	# print st.sump_temp
+	print st
+	dateformat = st.date.strftime('%a %d %b  - %H:%M')
+	print dateformat
 	#st = '10'
-	
-	return render_template("index.html", st=st)
+	# import ipdb; ipdb.set_trace()
+	return render_template("index.html", st=st, dateformat=dateformat)
 
 @app.route('/about')
 def about():
@@ -61,10 +64,20 @@ def _lightState():
 	
 	form = SwitchState(request.form)
 	print form.data
-	# if not form.water.data:
-	# 	print "Light Off"
-	# else:
-	# 	print "Light On"
+	if not form.water.data:
+		print "Water Off"
+	else:
+		print "Water On"
+
+	if not form.light.data:
+		print "Light Off"
+	else:
+		print "Light On"
+
+	if not form.air.data:
+		print "Air Off"
+	else:
+		print "Air On"
 
 	# import ipdb; ipdb.set_trace()
 	return ""
@@ -78,10 +91,10 @@ def event_detail(id):
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
-    db_session.remove()
+	db_session.remove()
 
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
-	#manager.run()
+	#app.run(debug=True)
+	manager.run()

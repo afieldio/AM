@@ -25,6 +25,53 @@
 		
 		
 	</script>
+
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["gauge"]});
+		google.setOnLoadCallback(drawWTChart);
+		function drawWTChart() {
+
+		  var data = google.visualization.arrayToDataTable([
+		    ['Label', 'Value'],
+		    ['', {{st.sump_temp}}],
+		  ]);
+
+		  var options = {
+		    width: 300, height: 300,
+		    redFrom: 90, redTo: 100,
+		    yellowFrom:75, yellowTo: 90,
+		    minorTicks: 5
+		  };
+
+		  var chart = new google.visualization.Gauge(document.getElementById('chart_wt'));
+
+		  chart.draw(data, options);
+
+		}
+
+		google.setOnLoadCallback(drawATChart);
+		function drawATChart() {
+
+		  var data = google.visualization.arrayToDataTable([
+		    ['Label', 'Value'],
+		    ['', {{st.air_temp}}],
+		  ]);
+
+		  var options = {
+		    width: 300, height: 300,
+		    redFrom: 90, redTo: 100,
+		    yellowFrom:75, yellowTo: 90,
+		    minorTicks: 5
+		  };
+
+		  var chart = new google.visualization.Gauge(document.getElementById('chart_at'));
+
+		  chart.draw(data, options);
+
+		}
+
+		console.log("width");
+	</script>
 {% endblock %}
 
 {% block page_content %} 
@@ -47,6 +94,7 @@
 				<div>
 					<div class="wt" id="chart_wt"></div>	
 				</div>
+
 				
 			</div>
 			<div class="col-sm-2">
@@ -62,6 +110,11 @@
 			</div>
 			<div class="col-sm-1">
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">Last Reading: {{dateformat}}</div>
+			<div class="col-sm-4"></div>
 		</div>
 		<div class="row sub_title">
 			<p class="row_title">Status</p>
