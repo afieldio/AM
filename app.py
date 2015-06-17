@@ -12,7 +12,7 @@ import sensors
 import gviz_api
 import json
 from database import db_session
-from models import Sensors
+from models import Sensors, Switches
 from flask.ext.migrate import Migrate, MigrateCommand
 from forms import SwitchState
 
@@ -64,22 +64,32 @@ def _lightState():
 	
 	form = SwitchState(request.form)
 	print form.data
-	if not form.water.data:
-		print "Water Off"
-	else:
-		print "Water On"
+	
+	water = form.water.data
+	light = form.light.data
+	air = form.air.data
 
-	if not form.light.data:
-		print "Light Off"
-	else:
-		print "Light On"
+	d = Switches(water, air, light)
+	import ipdb; ipdb.set_trace()
+	db_session.add(d)
+	db_session.commit()
 
-	if not form.air.data:
-		print "Air Off"
-	else:
-		print "Air On"
+	# if not form.water.data:
+	# 	print "Water Off"
+	# else:
+	# 	print "Water On"
 
-	# import ipdb; ipdb.set_trace()
+	# if not form.light.data:
+	# 	print "Light Off"
+	# else:
+	# 	print "Light On"
+
+	# if not form.air.data:
+	# 	print "Air Off"
+	# else:
+	# 	print "Air On"
+
+	import ipdb; ipdb.set_trace()
 	return ""
 
 @app.route('/events/<id>')
