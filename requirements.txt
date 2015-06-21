@@ -1,3 +1,5 @@
+--allow-all-external
+
 alembic==0.7.5.post2
 Flask==0.10.1
 Flask-Bootstrap==3.3.2.1
