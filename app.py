@@ -39,13 +39,14 @@ manager.add_command('db', MigrateCommand)
 
 @app.route('/')
 def index():
+	switchObj = db_session.query(Switches).order_by(Switches.pkSw.desc()).first()
 	st = sensors.get_sump_temp()
 	print st
 	dateformat = st.date.strftime('%a %d %b  - %H:%M')
 	print dateformat
 	#st = '10'
 	# import ipdb; ipdb.set_trace()
-	return render_template("index.html", st=st, dateformat=dateformat)
+	return render_template("index.html", st=st, dateformat=dateformat, switchObj=switchObj)
 
 @app.route('/about')
 def about():
@@ -69,9 +70,13 @@ def _lightState():
 	light = form.light.data
 	air = form.air.data
 
-	d = Switches(water, air, light)
-	import ipdb; ipdb.set_trace()
-	db_session.add(d)
+	print water
+	print light
+	print air
+
+	sw = Switches(water, light, air)
+	# import ipdb; ipdb.set_trace()
+	db_session.add(sw)
 	db_session.commit()
 
 	# if not form.water.data:
@@ -89,7 +94,7 @@ def _lightState():
 	# else:
 	# 	print "Air On"
 
-	import ipdb; ipdb.set_trace()
+	# import ipdb; ipdb.set_trace()
 	return ""
 
 @app.route('/events/<id>')

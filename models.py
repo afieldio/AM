@@ -19,11 +19,9 @@ class Sensors(Base):
 
 
 	def __init__(self, sump_temp=None, air_temp=None, date=None):
-		# self.sump_temp = sump_temp
-		# self.air_temp = air_temp
-		# self.date = date
-
-		super(Sensors, self).__init__()
+		self.sump_temp = sump_temp
+		self.air_temp = air_temp
+		self.date = date
 
 
 	def __repr__(self):
@@ -39,10 +37,8 @@ class Switches(Base):
 	lightSw = Column(Boolean)
 	dateSw = Column(DateTime, default=func.now())
 
-	def __init__(self, waterSw=None, airSw=None, lightSw=None, date=None):
-		# self.waterSw = waterSw
-		# self.airSw = airSw
-		# self.lightSw = lightSw
-		# self.dateSw = dateSw
-
-		super(Switches, self).__init__()
+	def __init__(self, waterSw=None, airSw=None, lightSw=None, dateSw=None):
+		self.waterSw = waterSw
+		self.airSw = airSw
+		self.lightSw = lightSw
+		self.dateSw = dateSw
