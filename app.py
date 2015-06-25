@@ -41,7 +41,7 @@ manager.add_command('db', MigrateCommand)
 def index():
 	switchObj = db_session.query(Switches).order_by(Switches.pkSw.desc()).first()
 	st = sensors.get_sump_temp()
-	print st
+	# import ipdb; ipdb.set_trace()
 	dateformat = st.date.strftime('%a %d %b  - %H:%M')
 	print dateformat
 	#st = '10'
@@ -114,5 +114,5 @@ def shutdown_session(exception=None):
 
 
 if __name__ == '__main__':
-	#app.run(debug=True)
-	manager.run()
+	app.run('192.168.1.73', debug=True)
+	# manager.run()
