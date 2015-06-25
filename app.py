@@ -70,8 +70,6 @@ def _lightState():
 	light = form.light.data
 	air = form.air.data
 
-<<<<<<< HEAD
-=======
 	print water
 	print light
 	print air
@@ -79,7 +77,7 @@ def _lightState():
 	sw = Switches(water, light, air)
 	# import ipdb; ipdb.set_trace()
 	db_session.add(sw)
->>>>>>> 57194fbf36854ce277ed1e3f7f04bf4644f1c562
+
 	db_session.commit()
 
 
@@ -98,10 +96,8 @@ def _lightState():
 	# else:
 	# 	print "Air On"
 
-<<<<<<< HEAD
-=======
+
 	# import ipdb; ipdb.set_trace()
->>>>>>> 57194fbf36854ce277ed1e3f7f04bf4644f1c562
 	return ""
 
 @app.route('/events/<id>')

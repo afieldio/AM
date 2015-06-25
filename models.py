@@ -44,7 +44,7 @@ class Switches(Base):
 		self.waterSw = waterSw
 		self.airSw = airSw
 		self.lightSw = lightSw
-<<<<<<< HEAD
+
 		self.dateSw = dateSw
 
 		# super(Switches, self).__init__()
@@ -52,8 +52,3 @@ class Switches(Base):
 	def __repr__(self):
  		return "{Switches={'waterSw':'%s', 'airSw':'%s', 'lightSw':'%s','dateSw':%s'}" % (self.waterSw, self.airSw, self.lightSw, self.dateSw)
 
-
-
-
-=======
->>>>>>> 57194fbf36854ce277ed1e3f7f04bf4644f1c562
