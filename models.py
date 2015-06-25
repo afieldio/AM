@@ -22,8 +22,9 @@ class Sensors(Base):
 		self.sump_temp = sump_temp
 		self.air_temp = air_temp
 		self.date = date
-
-		# super(Sensors, self).__init__()
+<<<<<<< HEAD
+=======
+>>>>>>> 57194fbf36854ce277ed1e3f7f04bf4644f1c562
 
 
 	def __repr__(self):
@@ -43,6 +44,7 @@ class Switches(Base):
 		self.waterSw = waterSw
 		self.airSw = airSw
 		self.lightSw = lightSw
+<<<<<<< HEAD
 		self.dateSw = dateSw
 
 		# super(Switches, self).__init__()
@@ -53,3 +55,5 @@ class Switches(Base):
 
 
 
+=======
+>>>>>>> 57194fbf36854ce277ed1e3f7f04bf4644f1c562

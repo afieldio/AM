@@ -126,7 +126,11 @@
 				<h4>Water Pump</h4>
 				
 				<div class="onoffswitch">
+					{% if switchObj.waterSw %}
+				    <input type="checkbox" name="water" class="onoffswitch-checkbox" id="waterSwitch" checked>
+				    {% else %}
 				    <input type="checkbox" name="water" class="onoffswitch-checkbox" id="waterSwitch">
+				    {% endif %}
 				    <label class="onoffswitch-label" for="waterSwitch">
 				        <span class="onoffswitch-inner"></span>
 				        <span class="onoffswitch-switch"></span>
@@ -138,7 +142,12 @@
 			<div class="col-sm-4 status">
 				<h4>Air Pump</h4>
 					<div class="onoffswitch">
-				    <input type="checkbox" name="air" class="onoffswitch-checkbox" id="airSwitch">
+					{% if switchObj.airSw %}
+				    	<input type="checkbox" name="air" class="onoffswitch-checkbox" id="airSwitch" checked >
+				    {% else %}
+				    	<input type="checkbox" name="air" class="onoffswitch-checkbox" id="airSwitch" >
+				    {% endif %}
+
 				    <label class="onoffswitch-label" for="airSwitch">
 				        <span class="onoffswitch-inner"></span>
 				        <span class="onoffswitch-switch"></span>
@@ -153,7 +162,11 @@
 				<h4>Lights</h4>
 				
 				<div class="onoffswitch">
-				    <input type="checkbox" name="light" class="onoffswitch-checkbox" id="lightSwitch">
+				{% if switchObj.lightSw %}
+				    <input type="checkbox" name="light" class="onoffswitch-checkbox" id="lightSwitch" checked>
+				{% else %}
+					<input type="checkbox" name="light" class="onoffswitch-checkbox" id="lightSwitch">
+				{% endif %}
 				    <label class="onoffswitch-label" for="lightSwitch">
 				        <span class="onoffswitch-inner"></span>
 				        <span class="onoffswitch-switch"></span>
