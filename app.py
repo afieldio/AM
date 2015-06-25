@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, flash
 from flask import abort
 from flask.ext.script import Manager
 from flask import render_template
@@ -69,10 +69,14 @@ def _lightState():
 	light = form.light.data
 	air = form.air.data
 
+	print "Water is :{0}".format(form.water.data)
+
 	d = Switches(water, air, light)
-	import ipdb; ipdb.set_trace()
+	# import ipdb; ipdb.set_trace()
+	
 	db_session.add(d)
 	db_session.commit()
+
 
 	# if not form.water.data:
 	# 	print "Water Off"
@@ -89,7 +93,7 @@ def _lightState():
 	# else:
 	# 	print "Air On"
 
-	import ipdb; ipdb.set_trace()
+	#import ipdb; ipdb.set_trace()
 	return ""
 
 @app.route('/events/<id>')
