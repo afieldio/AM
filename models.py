@@ -22,9 +22,6 @@ class Sensors(Base):
 		self.sump_temp = sump_temp
 		self.air_temp = air_temp
 		self.date = date
-<<<<<<< HEAD
-=======
->>>>>>> 57194fbf36854ce277ed1e3f7f04bf4644f1c562
 
 
 	def __repr__(self):
