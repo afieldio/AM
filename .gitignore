@@ -1,3 +1,4 @@
 *.pyc
 /google-vizualization-python
 /logs
+*.db

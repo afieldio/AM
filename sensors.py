@@ -8,8 +8,9 @@ def get_sump_temp():
 	
 	sensor = W1ThermSensor()
 	sump_temp = sensor.get_temperature()
-	print sump_temp
-	st = Sensors(sump_temp, '99.99')
+	# print sump_temp
+	# sump_temp = '99.99'
+	st = Sensors(sump_temp=sump_temp, air_temp='99.99')
 	db_session.add(st)
 	db_session.commit()
 

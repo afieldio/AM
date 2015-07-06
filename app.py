@@ -39,7 +39,8 @@ manager.add_command('db', MigrateCommand)
 
 @app.route('/')
 def index():
-	switchObj = db_session.query(Switches).order_by(Switches.pkSw.desc()).first()
+	switchObj = db_session.query(Switches).order_by(Switches.dateSw.desc()).first()
+	# import ipdb; ipdb.set_trace()
 	st = sensors.get_sump_temp()
 	# import ipdb; ipdb.set_trace()
 	dateformat = st.date.strftime('%a %d %b  - %H:%M')
@@ -61,7 +62,7 @@ def events():
 	return render_template("events.html", data=data)
 
 @app.route('/switchState', methods=["GET", "POST"])
-def _lightState():
+def _switchState():
 	
 	form = SwitchState(request.form)
 	print form.data
@@ -74,7 +75,7 @@ def _lightState():
 	print light
 	print air
 
-	sw = Switches(water, light, air)
+	sw = Switches(waterSw=water, airSw=air, lightSw=light)
 	# import ipdb; ipdb.set_trace()
 	db_session.add(sw)
 
@@ -114,5 +115,5 @@ def shutdown_session(exception=None):
 
 
 if __name__ == '__main__':
-	app.run('192.168.1.73', debug=True)
-	# manager.run()
+	#		app.run(debug=True)
+	manager.run()
