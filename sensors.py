@@ -16,3 +16,6 @@ def get_sump_temp():
 
 	#import ipdb; ipdb.set_trace()
 	return st
+
+if __name__ == '__main__':
+	get_sump_temp()

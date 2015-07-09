@@ -15,7 +15,8 @@ from database import db_session
 from models import Sensors, Switches
 from flask.ext.migrate import Migrate, MigrateCommand
 from forms import SwitchState
-
+import pin_control
+import Adafruit_BMP.BMP085 as BMP085
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -34,8 +35,8 @@ migrate = Migrate(app, db)
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
-
 # Main pages
+
 
 @app.route('/')
 def index():
@@ -46,8 +47,13 @@ def index():
 	dateformat = st.date.strftime('%a %d %b  - %H:%M')
 	print dateformat
 	#st = '10'
-	# import ipdb; ipdb.set_trace()
-	return render_template("index.html", st=st, dateformat=dateformat, switchObj=switchObj)
+	
+	bmp = BMP085.BMP085()
+	air_temp = bmp.read_temperature()
+	#import ipdb; ipdb.set_trace()
+
+	print air_temp
+	return render_template("index.html", st=st, air_temp=air_temp, dateformat=dateformat, switchObj=switchObj)
 
 @app.route('/about')
 def about():
@@ -82,10 +88,10 @@ def _switchState():
 	db_session.commit()
 
 
-	# if not form.water.data:
-	# 	print "Water Off"
-	# else:
-	# 	print "Water On"
+	if form.water.data:
+		pin_control.turn_on(17)
+	else:
+		pin_control.turn_off(17)
 
 	# if not form.light.data:
 	# 	print "Light Off"
@@ -115,5 +121,5 @@ def shutdown_session(exception=None):
 
 
 if __name__ == '__main__':
-	#		app.run(debug=True)
-	manager.run()
+	app.run('192.168.1.73', debug=True)
+	#manager.run()
