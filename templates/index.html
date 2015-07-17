@@ -33,8 +33,7 @@
 
 		  var data = google.visualization.arrayToDataTable([
 		    ['Label', 'Value'],
-		    // ['', {{st.sump_temp}}],
-		    ['','99.99'],
+		    ['', {{st.sump_temp}}],
 		  ]);
 
 		  var options = {
@@ -55,8 +54,7 @@
 
 		  var data = google.visualization.arrayToDataTable([
 		    ['Label', 'Value'],
-		    // ['', {{air_temp}}],
-		    ['','99.99'],
+		    ['', {{st.air_temp}}],
 		  ]);
 
 		  var options = {
@@ -86,6 +84,11 @@
 		<div class="row sub_title">
 			<p class="row_title">Vitals</p>
 		</div>
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">Last Reading: {{dateformat}}</div>
+			<div class="col-sm-4"></div>
+		</div>
 		
 		<div class="row row_bg">
 			
@@ -113,11 +116,7 @@
 			<div class="col-sm-1">
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-4"></div>
-			<div class="col-sm-4">Last Reading: {{dateformat}}</div>
-			<div class="col-sm-4"></div>
-		</div>
+		
 		<div class="row sub_title">
 			<p class="row_title">Status</p>
 		</div>

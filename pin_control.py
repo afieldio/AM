@@ -1,4 +1,4 @@
-# import wiringpi2 as wiringpi 
+import wiringpi2 as wiringpi 
 import time  
 # blinking function 
 def setup_pin(pin):
