@@ -4,6 +4,7 @@ from flask.ext.script import Manager
 from flask import render_template
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask import jsonify
 from sqlalchemy import desc
 import pdb
 import os
@@ -41,20 +42,15 @@ manager.add_command('db', MigrateCommand)
 @app.route('/')
 def index():
 	switchObj = db_session.query(Switches).order_by(Switches.dateSw.desc()).first()
-	# import ipdb; ipdb.set_trace()
+
+	sensorObj = db_session.query(Sensors.fish_temp, Sensors.date).all()
+	import ipdb; ipdb.set_trace()
 	st = sensors.get_sensor_data()
 	# import ipdb; ipdb.set_trace()
 	dateformat = st.date.strftime('%a %d %b  - %H:%M')
-	print dateformat
-	#st = '10'
+	#print dateformat
 	
-	bmp = BMP085.BMP085()
-	air_temp = bmp.read_temperature()
-	#air_temp = 10
-	#import ipdb; ipdb.set_trace()
-
-	print air_temp
-	return render_template("index.html", st=st, air_temp=air_temp, dateformat=dateformat, switchObj=switchObj)
+	return render_template("index.html", st=st, dateformat=dateformat, switchObj=switchObj, graph=graph)
 
 @app.route('/about')
 def about():
@@ -92,9 +88,11 @@ def _switchState():
 
 
 	if form.water.data:
-	 	pin_control.turn_on(17)
+	 	print "Water ON"
+	 	# pin_control.turn_on(3)
 	else:
-	 	pin_control.turn_off(17)
+		print "Water OFF"
+	 	# pin_control.turn_off(3)
 
 	# if not form.light.data:
 	# 	print "Light Off"
@@ -124,5 +122,5 @@ def shutdown_session(exception=None):
 
 
 if __name__ == '__main__':
-	app.run('192.168.1.73', debug=True)
+	app.run('192.168.1.191', debug=True)
 	#manager.run()

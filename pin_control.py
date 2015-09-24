@@ -2,7 +2,7 @@ import wiringpi2 as wiringpi
 import time  
 # blinking function 
 def setup_pin(pin):
-	wiringpi.wiringPiSetupSys()
+	wiringpi.wiringPiSetup()
 	wiringpi.pinMode(pin, 1)
 
 def turn_on(pin): 
@@ -19,10 +19,13 @@ def turn_off(pin):
 
 
 if __name__ == '__main__':
-	setup_pin(17)
+	setup_pin(3)
 	while True:
-		turn_on(17)
-		time.sleep(1)
-		turn_off(17)
+		turn_on(3)
+		print "On"
+		time.sleep(5)
+		turn_off(3)
+		print "Off"
+		time.sleep(5)
 
 	

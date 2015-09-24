@@ -6,6 +6,11 @@
 
 {% block head %}
 	{{super()}}
+	
+
+
+
+
 	<script type="text/javascript">
 		
 		$(document).ready(function() {
@@ -33,7 +38,7 @@
 
 		  var data = google.visualization.arrayToDataTable([
 		    ['Label', 'Value'],
-		    ['', {{st.sump_temp}}],
+		    ['', {{'%0.2f'| format(st.fish_temp|float)}}],
 		  ]);
 
 		  var options = {
@@ -54,7 +59,7 @@
 
 		  var data = google.visualization.arrayToDataTable([
 		    ['Label', 'Value'],
-		    ['', {{st.air_temp}}],
+		    ['', {{'%0.2f'| format(st.sump_temp|float)}}],
 		  ]);
 
 		  var options = {
@@ -70,7 +75,27 @@
 
 		}
 
-		console.log("width");
+		google.setOnLoadCallback(drawLTChart);
+		function drawLTChart() {
+
+		  var data = google.visualization.arrayToDataTable([
+		    ['Label', 'Value'],
+		    ['', {{'%0.2f'| format(st.grow_temp|float)}}],
+		  ]);
+
+		  var options = {
+		    width: 300, height: 300,
+		    redFrom: 90, redTo: 100,
+		    yellowFrom:75, yellowTo: 90,
+		    minorTicks: 5
+		  };
+
+		  var chart = new google.visualization.Gauge(document.getElementById('chart_lt'));
+
+		  chart.draw(data, options);
+
+		}
+
 	</script>
 {% endblock %}
 
@@ -89,32 +114,36 @@
 			<div class="col-sm-4">Last Reading: {{dateformat}}</div>
 			<div class="col-sm-4"></div>
 		</div>
+<!-- 
+		<section id="current-temperature" class="widget current-temperature" data-temperature="{{ st.fish_temp }}" data-low="0" data-high="50" data-optimal-low="20" data-optimal-high="30">
+                <h1>Current Temperature</h1>
+        </section> -->
 		
 		<div class="row row_bg">
 			
-			<div class="col-sm-1">
+		
+			<div class="col-sm-4 overview">
+				<h2 >Fish Tank</h2>
+				<div id="current-temperature" class="current-temperature" data-temperature="{{st.fish_temp}}" data-low="0" data-high="50" data-optimal-low="20" data-optimal-high="30">
+					<!-- <div class="wt" id="chart_wt"></div> -->	
+				</div>				
 			</div>
 			<div class="col-sm-4 overview">
-				<h2 >Water Temperature</h2>
-				<div>
-					<div class="wt" id="chart_wt"></div>	
-				</div>
-
-				
-			</div>
-			<div class="col-sm-2">
-				
-			</div>
-			<div class="col-sm-4 overview">
-				<h2 class="temp">Air Temperature</h2>
+				<h2 class="temp">Sump Tank</h2>
 				<div>
 					<div class="at" id="chart_at"></div>	
 				</div>
-				
-				
 			</div>
-			<div class="col-sm-1">
+			<div class="col-sm-4 overview">
+				<h2 class="temp">Grow Bed</h2>
+				<div>
+					<div class="at" id="chart_lt"></div>	
+				</div>
 			</div>
+		</div>
+
+		<div>
+			<svg id="graph" width="100%" height="50%" data-graph="{{ graph }}"></svg>
 		</div>
 		
 		<div class="row sub_title">

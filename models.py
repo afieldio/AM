@@ -7,14 +7,9 @@ class Sensors(Base):
 	pkS = Column(Integer, primary_key=True)
 	sump_temp = Column(Float)
 	air_temp = Column(Float)
-	# flow_1 = db.Column(db.Float(2))
-	# flow_2 = db.Column(db.Float(2))
-	# water_htr = db.Column(db.Boolean)
-	# air_htr = db.Column(db.Boolean)
-	# water_pump = db.Column(db.Boolean)
-	# air_pump = db.Column(db.Boolean)
-	# fish_temp = db.Column(db.Float(2))
-	
+	light_lux = Column(Float)
+	fish_temp = Column(Float)
+	grow_temp = Column(Float)
 	date = Column(DateTime, default=func.now())
 
 
@@ -25,8 +20,7 @@ class Sensors(Base):
 
 
 	def __repr__(self):
- 		return "{Sensors={'sump_temp':'%s', 'air_temp':'%s', 'date':%s'}" % (
-                                self.sump_temp, self.air_temp, self.date)
+ 		return "{Sensors={'sump_temp':'%s', 'air_temp':'%s', 'light_lux:%s', 'fish_temp':'%s', 'grow_temp':'%s', 'date':%s'}" % (self.sump_temp, self.air_temp, self.light_lux, self.fish_temp, self.grow_temp, self.date)
 
 
 class Switches(Base):

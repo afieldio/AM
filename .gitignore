@@ -3,3 +3,5 @@
 /logs
 *.db
 /Adafruit-Raspberry-Pi-Python-Code
+/PIGPIO
+pigpio.zip

@@ -1,0 +1,30 @@
+import RPi.GPIO as GPIO
+import time
+# blinking function
+
+minutes = 10
+
+onTime = minutes * 60
+
+def blink(pin):
+        GPIO.output(pin,GPIO.HIGH)
+	print "Start: %s" % time.ctime()
+        f.write("Start: %s\n" % time.ctime())
+	time.sleep(onTime)
+        GPIO.output(pin,GPIO.LOW)
+	print "Stop: %s" % time.ctime()
+	f.write("Stop: %s\n" % time.ctime())
+        return
+# to use Raspberry Pi board pin numbers
+#GPIO.setmode(GPIO.BOARD)
+# set up GPIO output channel
+#GPIO.setup(7, GPIO.OUT)
+ 
+
+if __name__ == "__main__":
+	f = open('pump.txt','w')
+	GPIO.setmode(GPIO.BOARD)
+	GPIO.setup(15, GPIO.OUT)
+	blink(15)
+	f.close()
+	GPIO.cleanup()
